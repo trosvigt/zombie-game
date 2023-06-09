@@ -5,33 +5,31 @@ import java.util.Random;
 
 public class Game {
     private static Random random = new Random();
-    private static ArrayList<Character> characters;
-    private static int survivorCount;
-    private static int zombieCount;
+    private static ArrayList<Survivor> survivors = new ArrayList();
+    private static ArrayList<Zombie> zombies = new ArrayList();
 
     public static void main(String[] args) {
         // Generate random Character list
-        characters = generateRandomCharacters();
-        System.out.println(characters.size());
+        generateRandomCharacters();
 
+        // Display statistics for the user
         displayStats();
     }
 
-    // This method will generate a random list of characters. The
+    // This method will generate a random list of zombies and survivors. The
     // number of characters generated is random, along with the
     // number of zombies and survivors
-    private static ArrayList<Character> generateRandomCharacters() {
+    private static void generateRandomCharacters() {
         // Declarations for random generation
         int characterType;
         int zombie;
         int survivor;
-
-        // List to hold characters
-        ArrayList<Character> characters = new ArrayList();
         
         // Get the total character count
         // Default min is 10 and default max is 30
         int characterCount = getRandomNumber(10, 31);
+
+        System.out.println(characterCount);
 
         // Generate number of characters equal to characterCount
         for (int i = 0; i < characterCount; i++) {
@@ -51,13 +49,13 @@ public class Game {
                         // Common infected case
                         case 1: {
                             // Create common infected
-                            characters.add(new CommonInfected());
+                            zombies.add(new CommonInfected());
                             break;
                         }
                         // Tank case
                         case 2: {
                             // Create tank
-                            characters.add(new Tank());
+                            zombies.add(new Tank());
                             break;
                         }
                         default: {
@@ -77,16 +75,17 @@ public class Game {
                     switch(survivor) {
                         case 1: {
                             // Create civilian
-                            characters.add(new Civilian());
+                            survivors.add(new Civilian());
                             break;
                         }
                         case 2: {
                             // Create scientist
-                            characters.add(new Scientist());
+                            survivors.add(new Scientist());
                             break;
                         }
                         case 3: {
-                            characters.add(new Soldier());
+                            // Create soldier
+                            survivors.add(new Soldier());
                             break;
                         }
                         default: {
@@ -96,15 +95,12 @@ public class Game {
                     }
                     break;
                 }
-                // Invalid number
                 default: {
                     System.out.println("Unable to create Character...");
                     break;
                 }
             }
         }
-
-        return characters;
     }
 
     // This method will return a random int between
@@ -123,8 +119,8 @@ public class Game {
 
     // This method will display final game statistics for the user
     private static void displayStats() {
-        System.out.println("We have " + survivorCount + " survivors trying to make it to safety.\n");
-        System.out.println("But there are " + zombieCount + " zombies waiting for them.\n");
+        System.out.println("We have " + survivors.size() + " survivors trying to make it to safety.\n");
+        System.out.println("But there are " + zombies.size() + " zombies waiting for them.\n");
         System.out.println("It seems " + 0 + " have made it to safety.");
     }
 }
