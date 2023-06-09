@@ -8,23 +8,54 @@ package com.mycompany.game;
  *
  * @author Ziqi
  */
-class Zombie extends Character {
+public abstract class Zombie extends Character {
 
-    public Zombie(String type, int initialHealth, int attack) {
-        super(type, initialHealth, attack);
+    public Zombie(int initialHealth, int attack) {
+        super(initialHealth, attack);
+
     }
+
+    //This method will be used to display information about the type of zombie
+    @Override
+    public String getType() {
+        return "Zombie";
+    }
+
+    //The method allows you to count the number of zombies of a specific type
+    public static void countZombieType(Zombie[] zombies, String type) {
+    int count = 0;
+
+    for (Zombie zombie : zombies) {
+        if (zombie.getType().equalsIgnoreCase(type)) {
+            count++;
+        }
+    }
+
+    System.out.println(type + " Count: " + count);
+}
+
 }
 
 class CommonInfected extends Zombie {
 
     public CommonInfected() {
-        super("Common Infected", 30, 5);
+        super(30, 5);
+    }
+
+    @Override
+    public String getType() {
+        return "Common Infected";
     }
 }
 
 class Tank extends Zombie {
 
     public Tank() {
-        super("Tank", 150, 20);
+        super(150, 20);
+    }
+
+    @Override
+    public String getType() {
+        return "Tank";
     }
 }

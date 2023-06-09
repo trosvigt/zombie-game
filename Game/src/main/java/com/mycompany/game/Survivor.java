@@ -8,30 +8,59 @@ package com.mycompany.game;
  *
  * @author Ziqi
  */
-public class Survivor extends Character {
+//Abstract classes allow we to define common behaviors
+public abstract class Survivor extends Character {
 
-    public Survivor(String type, int initialHealth, int attack) {
-        super(type, initialHealth, attack);
+    public Survivor(int initialHealth, int attack) {
+        super(initialHealth, attack);
+    }
+
+    //This method will be used to display information about the type of zombie
+    public abstract String getType();
+
+    //To count the number of survivor of a specific type
+    public static void countSurvivorType(Survivor[] survivors, String type) {
+        int count = 0;
+
+        for (Survivor survivor : survivors) {
+            if (survivor.getType().equalsIgnoreCase(type)) {
+                count++;
+            }
+        }
+
+        System.out.println(type + " Count: " + count);
     }
 }
 
 class Scientist extends Survivor {
-
     public Scientist() {
-        super("Scientist", 20, 2);
+        super(20, 2);
+    }
+
+    @Override
+    public String getType() {
+        return "Scientist";
     }
 }
 
 class Civilian extends Survivor {
-
     public Civilian() {
-        super("Civilian", 50, 5);
+        super(50, 5);
+    }
+
+    @Override
+    public String getType() {
+        return "Civilian";
     }
 }
 
 class Soldier extends Survivor {
-
     public Soldier() {
-        super("Soldier", 100, 10);
+        super(100, 10);
+    }
+
+    @Override
+    public String getType() {
+        return "Soldier";
     }
 }

@@ -8,25 +8,23 @@ package com.mycompany.game;
  *
  * @author Ziqi
  */
-public class Character {
-
-    private String type;
+public abstract class Character {
+    //Represents the initial health of the character.
     private int initialHealth;
+    //Represents the current health of the character.
     private int currentHealth;
     private int attack;
+    //Represents the number of kills.
+    private int kills;
 
-    public Character(String type, int initialHealth, int attack) {
-        this.type = type;
+    public Character(int initialHealth, int attack) {
         this.initialHealth = initialHealth;
         this.currentHealth = initialHealth;
         this.attack = attack;
+        this.kills = 0;
     }
 
     //getter
-    public String getType() {
-        return type;
-    }
-
     public int getInitialHealth() {
         return initialHealth;
     }
@@ -44,7 +42,17 @@ public class Character {
         return attack;
     }
 
-    //It represents the new health value of the target character after the attack.
+    public int getKills() {
+        return kills;
+    }
+
+    //To increment the kill count of the character
+    public void incrementKills() {
+        kills++;
+    }
+
+    public abstract String getType();
+
     public void attack(Character target) {
         target.setCurrentHealth(target.getCurrentHealth() - attack);
     }
