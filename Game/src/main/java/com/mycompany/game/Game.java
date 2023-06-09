@@ -1,68 +1,35 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
- */
-
  package Game.src.main.java.com.mycompany.game;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-/**
- *
- * @author Ziqi
- */
 public class Game {
 
     private static Random random = new Random();
+    private ArrayList<Character> characters;
+    private static int survivorCount;
+    private static int zombieCount;
 
     public static void main(String[] args) {
-        //to create an array of characters representing the survivors
-        Character[] survivors = generateRandomCharacters(17, "survivor");
-        Character[] zombies = generateRandomCharacters(8, "zombie");
-
-        //for cauculate how many survivors made it in displayStsts() method.
-        int survivorsMadeIt = battle(survivors, zombies);
-        displayStats(survivors, zombies, survivorsMadeIt);
-
-    }
-
-    public static Character[] generateRandomCharacters(int count, String type) {
+        // Generate random Character list
         
-    }
-
-    public static Survivor getRandomSurvivor() {
+        displayStats();
 
     }
 
-    public static Zombie getRandomZombie() {
-
+    // This method will contain the main battle logic...
+    // Each survivor attacks each zombie, then each zombie attacks
+    // each survivor, until either all survivors or all
+    // zombies are dead
+    public static int battle() {
+        return 0;
     }
 
-    public static int battle(Character[] survivors, Character[] zombies) {
-        //return survivorsMadeIt
-    }
-
-    public static void survivorAttack(Character[] survivors, Character[] zombies) {
-
-    }
-
-    public static void zombieAttack(Character[] zombies, Character[] survivors) {
-
-    }
-
-    //This method checks if all the survivors in the game are dead
-    public static boolean areAllSurvivorsDead(Character[] survivors) {
-
-    }
-
-    public static boolean areAllZombiesDead(Character[] zombies) {
-
-    }
-
-    public static void displayStats(Character[] survivors, Character[] zombies, int survivorsMadeIt) {
-        System.out.println("We have " + survivors.length + " survivors trying to make it to safety.\n");
-        System.out.println("But there are " + zombies.length + " zombies waiting for them.\n");
-        System.out.println("It seems " + survivorsMadeIt + " have made it to safety.");
+    // This method will display final game statistics for the user
+    private static void displayStats() {
+        System.out.println("We have " + survivorCount + " survivors trying to make it to safety.\n");
+        System.out.println("But there are " + zombieCount + " zombies waiting for them.\n");
+        System.out.println("It seems " + 0 + " have made it to safety.");
 
     }
 
