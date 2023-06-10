@@ -29,8 +29,6 @@ public class Game {
         // Default min is 10 and default max is 30
         int characterCount = getRandomNumber(10, 31);
 
-        System.out.println(characterCount);
-
         // Generate number of characters equal to characterCount
         for (int i = 0; i < characterCount; i++) {
             // Generate one or two to pick between Survivor and Zombie
