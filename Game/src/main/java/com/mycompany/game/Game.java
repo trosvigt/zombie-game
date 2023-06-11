@@ -11,13 +11,7 @@ public class Game {
 
     public static void main(String[] args) {
         // Generate random Character list
-       //generateRandomCharacters();
-
-       survivors.add(new Civilian());
-       survivors.add(new Soldier());
-
-       zombies.add(new CommonInfected());
-       zombies.add(new CommonInfected());
+       generateRandomCharacters();
 
         // Display statistics for the user
         displayStats();
