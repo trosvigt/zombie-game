@@ -31,7 +31,8 @@ public abstract class Zombie extends Character {
         }
     }
     System.out.println(type + " Count: " + count); 
-    
+}
+
     public abstract int getHealth(); 
     public abstract void setHealth(int initialHealth);
     //This method will check if the survivor is alive
