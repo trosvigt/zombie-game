@@ -3,33 +3,47 @@ package Game.src.main.java.com.mycompany.game;
 public abstract class Character {
     private int health;
     private int attack;
+    private int instance_id;
 
     public Character(int health, int attack) {
         this.health = health;
         this.attack = attack;
     }
 
-    public int getHealth() {
+    protected int getHealth() {
         return health;
     }
 
-    public int getAttack() {
+    protected int getAttack() {
         return attack;
     }
 
-    public void setHealth(int health) {
+    protected int getId() {
+        return instance_id;
+    }
+
+    protected abstract String getType();
+
+    protected void setHealth(int health) {
         this.health = health;
     }
 
-    public abstract String getType();
+    protected void setId(int id) {
+        this.instance_id = id;
+    }
 
-    public void attack(Character target) {
+    protected void attack(Character target) {
         target.setHealth(target.getHealth() - attack);
+    }
+
+    // This method will check if the survivor is alive
+    protected boolean isAlive(){
+        return getHealth() > 0;
     }
 
     @Override
     public String toString() {
-        return String.format("Type: %s, Health: %s, Damage: %s",
-            getType(), getHealth(), getAttack());
+        return String.format("%s %s",
+            getType(), getId());
     }
 }

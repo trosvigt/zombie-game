@@ -11,7 +11,7 @@ public class Game {
 
     public static void main(String[] args) {
         // Generate random Character list
-        generateRandomCharacters();
+       generateRandomCharacters();
 
         // Display statistics for the user
         displayStats();
@@ -112,7 +112,7 @@ public class Game {
     // Each survivor attacks each zombie, then each zombie attacks
     // each survivor, until either all survivors or all
     // zombies are dead
-    public static int battle() {
+    private static int battle() {
         ArrayList<Zombie> deadZombies = new ArrayList();
         ArrayList<Survivor> deadSurvivors = new ArrayList();
 
@@ -131,6 +131,8 @@ public class Game {
                     // Check if the zombie was killed by the survivor
                     if (!zombie.isAlive() && !deadZombies.contains(zombie)) {
                         deadZombies.add(zombie);
+
+                        System.out.println(survivor + " killed " + zombie);
                     }
                 }
             }
@@ -147,6 +149,8 @@ public class Game {
                     // Check if the survivor was killed by the zombie
                     if (!survivor.isAlive() && !deadSurvivors.contains(survivor)) {
                         deadSurvivors.add(survivor);
+
+                        System.out.println(zombie + " killed " + survivor);
                     }
                 }
             }
@@ -157,9 +161,9 @@ public class Game {
 
     // This method will display final game statistics for the user
     private static void displayStats() {
-        // Display initial numbers
-        System.out.println("We have " + survivors.size() + " survivor(s) trying to make it to safety");
-        System.out.println("But there are " + zombies.size() + " zombie(s) waiting for them");
+        displaySurvivorMessage();
+
+        displayZombieMessage();
 
         // Display final survivor count after battle
         int survivorCount = battle();
@@ -168,5 +172,26 @@ public class Game {
         } else {
             System.out.println("None of the survivors made it");
         }
+    }
+
+    private static void displaySurvivorMessage() {
+        String message;
+
+        message = String.format("We have %s survivor(s) trying to make it to safety (%s scientists, %s civilians, %s soldiers)",
+        survivors.size(),
+        Survivor.countSurvivorType(survivors, "Scientist"),
+        Survivor.countSurvivorType(survivors, "Civilian"),
+        Survivor.countSurvivorType(survivors, "Soldier"));
+        System.out.println(message);
+    }
+
+    private static void displayZombieMessage() {
+        String message;
+
+        message = String.format("But there are %s zombie(s) waiting for them (%s common infected, %s tanks)",
+        zombies.size(),
+        Zombie.countZombieType(zombies, "CommonInfected"),
+        Zombie.countZombieType(zombies, "Tank"));
+        System.out.println(message);
     }
 }
