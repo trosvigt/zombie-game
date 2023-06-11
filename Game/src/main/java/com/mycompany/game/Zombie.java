@@ -1,16 +1,8 @@
 package Game.src.main.java.com.mycompany.game;
 
-import java.io.ObjectInputStream.GetField;
-
 public abstract class Zombie extends Character {
     public Zombie(int health, int attack) {
         super(health, attack);
-    }
-
-    // This method will be used to display information about the type of zombie
-    @Override
-    public String getType() {
-        return "Zombie";
     }
 
     // The method allows you to count the number of zombies of a specific type
@@ -27,10 +19,6 @@ public abstract class Zombie extends Character {
         return count;
     }
 
-    public abstract int getHealth();
-
-    public abstract void setHealth(int health);
-
     // This method will check if the survivor is alive
     public boolean isAlive(){
         return getHealth() > 0;
@@ -41,17 +29,9 @@ public abstract class Zombie extends Character {
         setHealth(getHealth()-attack);
     
     }
-
-    @Override
-    public String toString() {
-        return String.format("Type: %s, Health: %s, Damage: %s",
-            getType(), getHealth(), getAttack());
-    }
 }
 
 class CommonInfected extends Zombie {
-    private int health;
-
     public CommonInfected() {
         super(30, 5);
     }
@@ -60,21 +40,9 @@ class CommonInfected extends Zombie {
     public String getType() {
         return "Common Infected";
     }
-
-    @Override
-    public int getHealth(){
-        return health;
-    }
-
-    @Override 
-    public void setHealth(int health){
-        this.health = health;
-    }
 }
 
 class Tank extends Zombie {
-    private int health;
-
     public Tank() {
         super(150, 20);
     }
@@ -82,15 +50,5 @@ class Tank extends Zombie {
     @Override
     public String getType() {
         return "Tank";
-    }
-
-    @Override
-    public int getHealth(){
-        return health;
-    }
-
-    @Override 
-    public void setHealth(int health){
-        this.health = health;
     }
 }

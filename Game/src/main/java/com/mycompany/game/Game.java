@@ -24,6 +24,10 @@ public class Game {
             System.out.println(zombie);
         }
 
+        for (Survivor survivor : survivors) {
+            System.out.println(survivor);
+        }
+
         // Display statistics for the user
         //displayStats();
     }
