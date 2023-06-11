@@ -14,27 +14,13 @@ public class Game {
        //generateRandomCharacters();
 
        survivors.add(new Civilian());
-       survivors.add(new Civilian());
-       survivors.add(new Civilian());
-       survivors.add(new Soldier());
        survivors.add(new Soldier());
 
        zombies.add(new CommonInfected());
        zombies.add(new CommonInfected());
-       zombies.add(new Tank());
-       zombies.add(new Tank());
-       zombies.add(new Tank());
-       zombies.add(new Tank());
-       zombies.add(new Tank());
-       zombies.add(new Tank());
-       zombies.add(new Tank());
-
-       for (Zombie zombie : zombies) {
-            System.out.println(zombie);
-       }
 
         // Display statistics for the user
-        //displayStats();
+        displayStats();
     }
 
     // This method will generate a random list of zombies and survivors. The
@@ -151,6 +137,8 @@ public class Game {
                     // Check if the zombie was killed by the survivor
                     if (!zombie.isAlive() && !deadZombies.contains(zombie)) {
                         deadZombies.add(zombie);
+
+                        System.out.println(survivor + " killed " + zombie);
                     }
                 }
             }
@@ -167,6 +155,8 @@ public class Game {
                     // Check if the survivor was killed by the zombie
                     if (!survivor.isAlive() && !deadSurvivors.contains(survivor)) {
                         deadSurvivors.add(survivor);
+
+                        System.out.println(zombie + " killed " + survivor);
                     }
                 }
             }

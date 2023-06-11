@@ -23,7 +23,7 @@ public abstract class Survivor extends Character {
 }
 
 class Scientist extends Survivor {
-    private static int id;
+    private static int id = -1;
 
     public Scientist() {
         super(20, 2);
@@ -45,7 +45,7 @@ class Scientist extends Survivor {
 }
 
 class Civilian extends Survivor {
-    private static int id;
+    private static int id = -1;
 
     public Civilian() {
         super(50, 5);
@@ -67,7 +67,7 @@ class Civilian extends Survivor {
 }
 
 class Soldier extends Survivor {
-    private static int id;
+    private static int id = -1;
 
     public Soldier() {
         super(100, 10);
