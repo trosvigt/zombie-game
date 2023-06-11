@@ -11,31 +11,31 @@ public class Game {
 
     public static void main(String[] args) {
         // Generate random Character list
-       //generateRandomCharacters();
+       generateRandomCharacters();
 
-       survivors.add(new Civilian());
-       survivors.add(new Civilian());
-       survivors.add(new Civilian());
-       survivors.add(new Soldier());
-       survivors.add(new Soldier());
+    //    survivors.add(new Civilian());
+    //    survivors.add(new Civilian());
+    //    survivors.add(new Civilian());
+    //    survivors.add(new Soldier());
+    //    survivors.add(new Soldier());
 
-       zombies.add(new CommonInfected());
-       zombies.add(new CommonInfected());
-       zombies.add(new Tank());
-       zombies.add(new Tank());
-       zombies.add(new Tank());
-       zombies.add(new Tank());
-       zombies.add(new Tank());
-       zombies.add(new Tank());
-       zombies.add(new Tank());
+    //    zombies.add(new CommonInfected());
+    //    zombies.add(new CommonInfected());
+    //    zombies.add(new Tank());
+    //    zombies.add(new Tank());
+    //    zombies.add(new Tank());
+    //    zombies.add(new Tank());
+    //    zombies.add(new Tank());
+    //    zombies.add(new Tank());
+    //    zombies.add(new Tank());
 
-       System.out.println(zombies.get(0).getId());
-       System.out.println(zombies.get(1).getId());
-       System.out.println(zombies.get(2).getId());
-       System.out.println(zombies.get(4).getId());
+    //    System.out.println(zombies.get(0).getId());
+    //    System.out.println(zombies.get(1).getId());
+    //    System.out.println(zombies.get(2).getId());
+    //    System.out.println(zombies.get(4).getId());
 
         // Display statistics for the user
-        //displayStats();
+        displayStats();
     }
 
     // This method will generate a random list of zombies and survivors. The
@@ -133,7 +133,7 @@ public class Game {
     // Each survivor attacks each zombie, then each zombie attacks
     // each survivor, until either all survivors or all
     // zombies are dead
-    public static int battle() {
+    private static int battle() {
         ArrayList<Zombie> deadZombies = new ArrayList();
         ArrayList<Survivor> deadSurvivors = new ArrayList();
 
@@ -183,12 +183,12 @@ public class Game {
         displayZombieMessage();
 
         // Display final survivor count after battle
-        // int survivorCount = battle();
-        // if (survivorCount > 0) {
-        //     System.out.println("It seems " + survivorCount + " have made it to safety.");
-        // } else {
-        //     System.out.println("None of the survivors made it");
-        // }
+        int survivorCount = battle();
+        if (survivorCount > 0) {
+            System.out.println("It seems " + survivorCount + " have made it to safety.");
+        } else {
+            System.out.println("None of the survivors made it");
+        }
     }
 
     private static void displaySurvivorMessage() {
@@ -206,7 +206,7 @@ public class Game {
         String message;
 
         message = String.format("But there are %s zombie(s) waiting for them (%s common infected, %s tanks)",
-        survivors.size(),
+        zombies.size(),
         Zombie.countZombieType(zombies, "CommonInfected"),
         Zombie.countZombieType(zombies, "Tank"));
         System.out.println(message);

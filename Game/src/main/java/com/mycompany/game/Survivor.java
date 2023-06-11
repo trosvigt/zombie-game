@@ -20,11 +20,6 @@ public abstract class Survivor extends Character {
 
         return count;
     }
-
-    // This method will check if the survivor is alive
-    public boolean isAlive(){
-        return getHealth() > 0;
-    }
 }
 
 class Scientist extends Survivor {

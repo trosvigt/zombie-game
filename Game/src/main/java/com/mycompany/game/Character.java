@@ -10,30 +10,35 @@ public abstract class Character {
         this.attack = attack;
     }
 
-    public int getHealth() {
+    protected int getHealth() {
         return health;
     }
 
-    public int getAttack() {
+    protected int getAttack() {
         return attack;
     }
 
-    public int getId() {
+    protected int getId() {
         return instance_id;
     }
 
-    public abstract String getType();
+    protected abstract String getType();
 
-    public void setHealth(int health) {
+    protected void setHealth(int health) {
         this.health = health;
     }
 
-    public void setId(int id) {
+    protected void setId(int id) {
         this.instance_id = id;
     }
 
-    public void attack(Character target) {
+    protected void attack(Character target) {
         target.setHealth(target.getHealth() - attack);
+    }
+
+    // This method will check if the survivor is alive
+    protected boolean isAlive(){
+        return getHealth() > 0;
     }
 
     @Override
