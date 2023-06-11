@@ -32,7 +32,7 @@ class CommonInfected extends Zombie {
 
     @Override
     public String getType() {
-        return "Common Infected";
+        return "CommonInfected";
     }
 }
 

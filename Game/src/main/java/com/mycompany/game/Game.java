@@ -11,10 +11,28 @@ public class Game {
 
     public static void main(String[] args) {
         // Generate random Character list
-        generateRandomCharacters();
+       //generateRandomCharacters();
+
+       survivors.add(new Civilian());
+       survivors.add(new Civilian());
+       survivors.add(new Civilian());
+       survivors.add(new Soldier());
+       survivors.add(new Soldier());
+
+       zombies.add(new CommonInfected());
+       zombies.add(new CommonInfected());
+       zombies.add(new Tank());
+       zombies.add(new Tank());
+       zombies.add(new Tank());
+       zombies.add(new Tank());
+       zombies.add(new Tank());
+       zombies.add(new Tank());
+       zombies.add(new Tank());
+
+       System.out.println(zombies.get(0).getType());
 
         // Display statistics for the user
-        displayStats();
+        //displayStats();
     }
 
     // This method will generate a random list of zombies and survivors. The
