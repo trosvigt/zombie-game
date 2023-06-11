@@ -11,10 +11,21 @@ public class Game {
 
     public static void main(String[] args) {
         // Generate random Character list
-        generateRandomCharacters();
+        //generateRandomCharacters();
+
+        // Test data
+        survivors.add(new Civilian());
+        survivors.add(new Soldier());
+
+        zombies.add(new CommonInfected());
+        zombies.add(new CommonInfected());
+
+        for (Zombie zombie : zombies) {
+            System.out.println(zombie);
+        }
 
         // Display statistics for the user
-        displayStats();
+        //displayStats();
     }
 
     // This method will generate a random list of zombies and survivors. The
@@ -113,20 +124,21 @@ public class Game {
     // each survivor, until either all survivors or all
     // zombies are dead
     public static int battle() {
-        int survivorCount = survivors.size();
-        int zombieCount = zombies.size();
+        ArrayList<Zombie> deadZombies = new ArrayList();
+        ArrayList<Survivor> deadSurvivors = new ArrayList();
 
         // Attack until all survivors or all zombies are dead
-        while (survivorCount > 0 && zombieCount > 0) {
+        while (survivors.size() != deadSurvivors.size() || 
+                zombies.size() != deadZombies.size()) {
             // For each survivor...
             for (Survivor survivor : survivors) {
                 // For each zombie...
                 for (Zombie zombie : zombies) {
-                    // Deal damage to zombie
+                    // If neither the zombie nor survivor are dead,
+                    // deal damage
                     if (!survivor.isAlive() || !zombie.isAlive()) {
                         zombie.takeDamage(survivor.getAttack());
-                    } else {
-                        continue;
+                        //survivor.attack(zombie);
                     }
 
                     String message = String.format("Survivor dealing %s damage",
@@ -134,8 +146,9 @@ public class Game {
                     System.out.println(message);
 
                     // Check if the zombie was killed by the survivor
-                    if (!zombie.isAlive()) {
-                        zombieCount--;
+                    if (!zombie.isAlive() && !deadZombies.contains(zombie)) {
+                        deadZombies.add(zombie);
+                        System.out.println("Dead zombie...");
                     }
                 }
             }
@@ -144,11 +157,11 @@ public class Game {
             for (Zombie zombie : zombies) {
                 // For each survivor...
                 for (Survivor survivor : survivors) {
-                    // Deal damage to survivor
+                    // If neither the zombie nor survivor are dead,
+                    // deal damage
                     if (!survivor.isAlive() || !zombie.isAlive()) {
                         survivor.takeDamage(zombie.getAttack());
-                    } else {
-                        continue;
+                        //zombie.attack(survivor);
                     }
 
                     String message = String.format("Zombie dealing %s damage",
@@ -156,14 +169,15 @@ public class Game {
                     System.out.println(message);
 
                     // Check if the survivor was killed by the zombie
-                    if (!survivor.isAlive()) {
-                        survivorCount--;
+                    if (!survivor.isAlive() && !deadSurvivors.contains(survivor)) {
+                        deadSurvivors.add(survivor);
+                        System.out.println("Dead survivor...");
                     }
                 }
             }
         }
 
-        return survivorCount;
+        return survivors.size() - deadSurvivors.size();
     }
 
     // This method will display final game statistics for the user

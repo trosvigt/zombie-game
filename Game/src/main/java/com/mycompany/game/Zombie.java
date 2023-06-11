@@ -1,5 +1,7 @@
 package Game.src.main.java.com.mycompany.game;
 
+import java.io.ObjectInputStream.GetField;
+
 public abstract class Zombie extends Character {
     public Zombie(int health, int attack) {
         super(health, attack);
@@ -40,6 +42,11 @@ public abstract class Zombie extends Character {
     
     }
 
+    @Override
+    public String toString() {
+        return String.format("Type: %s, Health: %s, Damage: %s",
+            getType(), getHealth(), getAttack());
+    }
 }
 
 class CommonInfected extends Zombie {

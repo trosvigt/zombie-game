@@ -11,14 +11,8 @@ public abstract class Character {
         this.kills = 0;
     }
 
-    // Getter
     public int getHealth() {
         return health;
-    }
-
-    // Setter
-    public void setHealth(int health) {
-        this.health = health;
     }
 
     public int getAttack() {
@@ -27,6 +21,10 @@ public abstract class Character {
 
     public int getKills() {
         return kills;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     // To increment the kill count of the character
