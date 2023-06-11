@@ -28,7 +28,7 @@ public class Game {
 
         // Get the total character count
         // Default min is 10 and default max is 30
-        int characterCount = getRandomNumber(2, 6);
+        int characterCount = getRandomNumber(10, 30);
 
         // Generate number of characters equal to characterCount
         for (int i = 0; i < characterCount; i++) {
