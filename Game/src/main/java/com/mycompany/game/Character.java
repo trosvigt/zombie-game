@@ -43,7 +43,7 @@ public abstract class Character {
 
     @Override
     public String toString() {
-        return String.format("Type: %s, Health: %s, Damage: %s",
-            getType(), getHealth(), getAttack());
+        return String.format("%s %s",
+            getType(), getId());
     }
 }
