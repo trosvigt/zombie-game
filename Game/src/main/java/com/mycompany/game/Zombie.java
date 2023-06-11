@@ -1,12 +1,14 @@
 package Game.src.main.java.com.mycompany.game;
 
+import java.util.List;
+
 public abstract class Zombie extends Character {
     public Zombie(int health, int attack) {
         super(health, attack);
     }
 
     // The method allows you to count the number of zombies of a specific type
-    public static int countZombieType(Zombie[] zombies, String type) {
+    public static int countZombieType(List<Zombie> zombies, String type) {
         int count = 0;
 
         // Count the type

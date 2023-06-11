@@ -29,10 +29,8 @@ public class Game {
        zombies.add(new Tank());
        zombies.add(new Tank());
 
-       System.out.println(zombies.get(0).getType());
-
         // Display statistics for the user
-        //displayStats();
+        displayStats();
     }
 
     // This method will generate a random list of zombies and survivors. The
@@ -175,9 +173,9 @@ public class Game {
 
     // This method will display final game statistics for the user
     private static void displayStats() {
-        // Display initial numbers
-        System.out.println("We have " + survivors.size() + " survivor(s) trying to make it to safety");
-        System.out.println("But there are " + zombies.size() + " zombie(s) waiting for them");
+        displaySurvivorMessage();
+
+        displayZombieMessage();
 
         // Display final survivor count after battle
         int survivorCount = battle();
@@ -186,5 +184,26 @@ public class Game {
         } else {
             System.out.println("None of the survivors made it");
         }
+    }
+
+    private static void displaySurvivorMessage() {
+        String message;
+
+        message = String.format("We have %s survivor(s) trying to make it to safety (%s scientists, %s civilians, %s soldiers)",
+        survivors.size(),
+        Survivor.countSurvivorType(survivors, "Scientist"),
+        Survivor.countSurvivorType(survivors, "Civilian"),
+        Survivor.countSurvivorType(survivors, "Soldier"));
+        System.out.println(message);
+    }
+
+    private static void displayZombieMessage() {
+        String message;
+
+        message = String.format("But there are %s zombie(s) waiting for them (%s common infected, %s tanks)",
+        survivors.size(),
+        Zombie.countZombieType(zombies, "CommonInfected"),
+        Zombie.countZombieType(zombies, "Tank"));
+        System.out.println(message);
     }
 }

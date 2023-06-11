@@ -1,12 +1,14 @@
 package Game.src.main.java.com.mycompany.game;
 
+import java.util.List;
+
 public abstract class Survivor extends Character {
     public Survivor(int health, int attack) {
         super(health, attack);
     }
 
     // To count the number of survivor of a specific type
-    public static int countSurvivorType(Survivor[] survivors, String type) {
+    public static int countSurvivorType(List<Survivor> survivors, String type) {
         int count = 0;
 
         // Count the type
