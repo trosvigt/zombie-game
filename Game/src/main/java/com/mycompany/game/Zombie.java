@@ -30,14 +30,25 @@ public abstract class Zombie extends Character {
             count++;
         }
     }
-
-    System.out.println(type + " Count: " + count);
+    System.out.println(type + " Count: " + count); 
 }
+
+    public abstract int getHealth(); 
+    public abstract void setHealth(int initialHealth);
+    //This method will check if the survivor is alive
+    public boolean isAlive(){
+        return getHealth()>0;
+    }
+    //This method will deccrease their health when zommbies attack
+    public void takeDamage(int attack){
+        setHealth(getHealth()-attack);
+    
+    }
 
 }
 
 class CommonInfected extends Zombie {
-
+    private int initialHealth;
     public CommonInfected() {
         super(30, 5);
     }
@@ -46,10 +57,18 @@ class CommonInfected extends Zombie {
     public String getType() {
         return "Common Infected";
     }
+    @Override
+    public int getHealth(){
+        return initialHealth;
+    }
+    @Override 
+    public void setHealth(int initialHealth){
+        this.initialHealth=initialHealth;
+    }
 }
 
 class Tank extends Zombie {
-
+    private int initialHealth;
     public Tank() {
         super(150, 20);
     }
@@ -57,5 +76,13 @@ class Tank extends Zombie {
     @Override
     public String getType() {
         return "Tank";
+    }
+    @Override
+    public int getHealth(){
+        return initialHealth;
+    }
+    @Override 
+    public void setHealth(int initialHealth){
+        this.initialHealth=initialHealth;
     }
 }

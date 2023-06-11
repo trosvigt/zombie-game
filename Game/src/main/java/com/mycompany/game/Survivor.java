@@ -30,9 +30,22 @@ public abstract class Survivor extends Character {
 
         System.out.println(type + " Count: " + count);
     }
+    public abstract int getHealth(); 
+    public abstract void setHealth(int initialHealth);
+    //This method will check if the survivor is alive
+    public boolean isAlive(){
+        return getHealth()>0;
+    }
+    //This method will deccrease their health when zommbies attack
+    public void takeDamage(int attack){
+        setHealth(getHealth()-attack);
+    
+    }
+    
 }
 
 class Scientist extends Survivor {
+    private int initialHealth;
     public Scientist() {
         super(20, 2);
     }
@@ -41,9 +54,18 @@ class Scientist extends Survivor {
     public String getType() {
         return "Scientist";
     }
+    @Override
+    public int getHealth(){
+        return initialHealth;
+    }
+    @Override 
+    public void setHealth(int initialHealth){
+        this.initialHealth=initialHealth;
+    }
 }
 
 class Civilian extends Survivor {
+    private int initialHealth;
     public Civilian() {
         super(50, 5);
     }
@@ -52,9 +74,17 @@ class Civilian extends Survivor {
     public String getType() {
         return "Civilian";
     }
+    public int getHealth(){
+        return initialHealth;
+    }
+    @Override 
+    public void setHealth(int initialHealth){
+        this.initialHealth=initialHealth;
+    }
 }
 
 class Soldier extends Survivor {
+    private int initialHealth;
     public Soldier() {
         super(100, 10);
     }
@@ -62,5 +92,12 @@ class Soldier extends Survivor {
     @Override
     public String getType() {
         return "Soldier";
+    }
+    public int getHealth(){
+        return initialHealth;
+    }
+    @Override 
+    public void setHealth(int initialHealth){
+        this.initialHealth=initialHealth;
     }
 }
