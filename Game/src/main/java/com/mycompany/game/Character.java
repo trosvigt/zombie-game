@@ -3,6 +3,7 @@ package Game.src.main.java.com.mycompany.game;
 public abstract class Character {
     private int health;
     private int attack;
+    private int instance_id;
 
     public Character(int health, int attack) {
         this.health = health;
@@ -17,11 +18,19 @@ public abstract class Character {
         return attack;
     }
 
+    public int getId() {
+        return instance_id;
+    }
+
+    public abstract String getType();
+
     public void setHealth(int health) {
         this.health = health;
     }
 
-    public abstract String getType();
+    public void setId(int id) {
+        this.instance_id = id;
+    }
 
     public void attack(Character target) {
         target.setHealth(target.getHealth() - attack);

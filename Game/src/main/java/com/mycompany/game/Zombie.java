@@ -28,8 +28,19 @@ public abstract class Zombie extends Character {
 }
 
 class CommonInfected extends Zombie {
+    private static int id = -1;
+
     public CommonInfected() {
         super(30, 5);
+
+        setId(incrementId());
+    }
+
+    // Gets next class id
+    private static int incrementId() {
+        id++;
+
+        return id;
     }
 
     @Override
@@ -39,8 +50,19 @@ class CommonInfected extends Zombie {
 }
 
 class Tank extends Zombie {
+    private static int id = -1;
+
     public Tank() {
         super(150, 20);
+
+        setId(incrementId());
+    }
+
+    // Gets next class id
+    private static int incrementId() {
+        id++;
+
+        return id;
     }
 
     @Override

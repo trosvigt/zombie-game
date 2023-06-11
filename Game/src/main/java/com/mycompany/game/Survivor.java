@@ -28,8 +28,19 @@ public abstract class Survivor extends Character {
 }
 
 class Scientist extends Survivor {
+    private static int id;
+
     public Scientist() {
         super(20, 2);
+
+        setId(incrementId());
+    }
+
+    // Gets next class id
+    private static int incrementId() {
+        id++;
+
+        return id;
     }
 
     @Override
@@ -39,8 +50,19 @@ class Scientist extends Survivor {
 }
 
 class Civilian extends Survivor {
+    private static int id;
+
     public Civilian() {
         super(50, 5);
+
+        setId(incrementId());
+    }
+
+    // Gets next class id
+    private static int incrementId() {
+        id++;
+
+        return id;
     }
 
     @Override
@@ -50,8 +72,19 @@ class Civilian extends Survivor {
 }
 
 class Soldier extends Survivor {
+    private static int id;
+
     public Soldier() {
         super(100, 10);
+
+        setId(incrementId());
+    }
+
+    // Gets next class id
+    private static int incrementId() {
+        id++;
+
+        return id;
     }
 
     @Override

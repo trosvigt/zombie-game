@@ -29,8 +29,13 @@ public class Game {
        zombies.add(new Tank());
        zombies.add(new Tank());
 
+       System.out.println(zombies.get(0).getId());
+       System.out.println(zombies.get(1).getId());
+       System.out.println(zombies.get(2).getId());
+       System.out.println(zombies.get(4).getId());
+
         // Display statistics for the user
-        displayStats();
+        //displayStats();
     }
 
     // This method will generate a random list of zombies and survivors. The
@@ -178,12 +183,12 @@ public class Game {
         displayZombieMessage();
 
         // Display final survivor count after battle
-        int survivorCount = battle();
-        if (survivorCount > 0) {
-            System.out.println("It seems " + survivorCount + " have made it to safety.");
-        } else {
-            System.out.println("None of the survivors made it");
-        }
+        // int survivorCount = battle();
+        // if (survivorCount > 0) {
+        //     System.out.println("It seems " + survivorCount + " have made it to safety.");
+        // } else {
+        //     System.out.println("None of the survivors made it");
+        // }
     }
 
     private static void displaySurvivorMessage() {
