@@ -11,27 +11,10 @@ public class Game {
 
     public static void main(String[] args) {
         // Generate random Character list
-        //generateRandomCharacters();
-
-        // Test data
-        survivors.add(new Civilian());
-        survivors.add(new Soldier());
-
-        zombies.add(new CommonInfected());
-        zombies.add(new CommonInfected());
-
-        Survivor survivor = survivors.get(1);
-        Zombie zombie = zombies.get(1);
-
-        System.out.println(survivor);
-        System.out.println(zombie);
-
-        zombie.attack(survivor);
-
-        System.out.println(survivor);
+        generateRandomCharacters();
 
         // Display statistics for the user
-        //displayStats();
+        displayStats();
     }
 
     // This method will generate a random list of zombies and survivors. The
@@ -134,26 +117,20 @@ public class Game {
         ArrayList<Survivor> deadSurvivors = new ArrayList();
 
         // Attack until all survivors or all zombies are dead
-        while (survivors.size() != deadSurvivors.size() || 
+        while (survivors.size() != deadSurvivors.size() &&
                 zombies.size() != deadZombies.size()) {
             // For each survivor...
             for (Survivor survivor : survivors) {
                 // For each zombie...
                 for (Zombie zombie : zombies) {
-                    // If neither the zombie nor survivor are dead,
-                    // deal damage
-                    if (!survivor.isAlive() || !zombie.isAlive()) {
+                    // If both zombie and survivor are alive...
+                    if (survivor.isAlive() && zombie.isAlive()) {
                         survivor.attack(zombie);
                     }
-
-                    String message = String.format("Survivor dealing %s damage",
-                        survivor.getAttack());
-                    System.out.println(message);
 
                     // Check if the zombie was killed by the survivor
                     if (!zombie.isAlive() && !deadZombies.contains(zombie)) {
                         deadZombies.add(zombie);
-                        System.out.println("Dead zombie...");
                     }
                 }
             }
@@ -162,20 +139,14 @@ public class Game {
             for (Zombie zombie : zombies) {
                 // For each survivor...
                 for (Survivor survivor : survivors) {
-                    // If neither the zombie nor survivor are dead,
-                    // deal damage
-                    if (!survivor.isAlive() || !zombie.isAlive()) {
+                    // If both zombie and survivor are alive...
+                    if (survivor.isAlive() && zombie.isAlive()) {
                         zombie.attack(survivor);
                     }
-
-                    String message = String.format("Zombie dealing %s damage",
-                        zombie.getAttack());
-                    System.out.println(message);
 
                     // Check if the survivor was killed by the zombie
                     if (!survivor.isAlive() && !deadSurvivors.contains(survivor)) {
                         deadSurvivors.add(survivor);
-                        System.out.println("Dead survivor...");
                     }
                 }
             }
@@ -187,11 +158,15 @@ public class Game {
     // This method will display final game statistics for the user
     private static void displayStats() {
         // Display initial numbers
-        System.out.println("We have " + survivors.size() + " survivors trying to make it to safety.\n");
-        System.out.println("But there are " + zombies.size() + " zombies waiting for them.\n");
+        System.out.println("We have " + survivors.size() + " survivor(s) trying to make it to safety");
+        System.out.println("But there are " + zombies.size() + " zombie(s) waiting for them");
 
         // Display final survivor count after battle
         int survivorCount = battle();
-        System.out.println("It seems " + survivorCount + " have made it to safety.");
+        if (survivorCount > 0) {
+            System.out.println("It seems " + survivorCount + " have made it to safety.");
+        } else {
+            System.out.println("None of the survivors made it");
+        }
     }
 }
