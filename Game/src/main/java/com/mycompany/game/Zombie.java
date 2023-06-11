@@ -23,12 +23,6 @@ public abstract class Zombie extends Character {
     public boolean isAlive(){
         return getHealth() > 0;
     }
-
-    // This method will deccrease their health when zommbies attack
-    public void takeDamage(int attack){
-        setHealth(getHealth()-attack);
-    
-    }
 }
 
 class CommonInfected extends Zombie {

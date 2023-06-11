@@ -20,13 +20,15 @@ public class Game {
         zombies.add(new CommonInfected());
         zombies.add(new CommonInfected());
 
-        for (Zombie zombie : zombies) {
-            System.out.println(zombie);
-        }
+        Survivor survivor = survivors.get(1);
+        Zombie zombie = zombies.get(1);
 
-        for (Survivor survivor : survivors) {
-            System.out.println(survivor);
-        }
+        System.out.println(survivor);
+        System.out.println(zombie);
+
+        zombie.attack(survivor);
+
+        System.out.println(survivor);
 
         // Display statistics for the user
         //displayStats();
@@ -141,8 +143,7 @@ public class Game {
                     // If neither the zombie nor survivor are dead,
                     // deal damage
                     if (!survivor.isAlive() || !zombie.isAlive()) {
-                        zombie.takeDamage(survivor.getAttack());
-                        //survivor.attack(zombie);
+                        survivor.attack(zombie);
                     }
 
                     String message = String.format("Survivor dealing %s damage",
@@ -164,8 +165,7 @@ public class Game {
                     // If neither the zombie nor survivor are dead,
                     // deal damage
                     if (!survivor.isAlive() || !zombie.isAlive()) {
-                        survivor.takeDamage(zombie.getAttack());
-                        //zombie.attack(survivor);
+                        zombie.attack(survivor);
                     }
 
                     String message = String.format("Zombie dealing %s damage",
