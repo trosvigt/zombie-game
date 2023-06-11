@@ -1,9 +1,10 @@
- package Game.src.main.java.com.mycompany.game;
+package Game.src.main.java.com.mycompany.game;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Game {
+
     private static Random random = new Random();
     private static ArrayList<Survivor> survivors = new ArrayList();
     private static ArrayList<Zombie> zombies = new ArrayList();
@@ -24,7 +25,7 @@ public class Game {
         int characterType;
         int zombie;
         int survivor;
-        
+
         // Get the total character count
         // Default min is 10 and default max is 30
         int characterCount = getRandomNumber(10, 31);
@@ -35,7 +36,7 @@ public class Game {
             characterType = getRandomNumber(1, 3);
 
             // Depending on the type...
-            switch(characterType) {
+            switch (characterType) {
                 // Zombie case
                 case 1: {
                     // Generate one or two to pick between common
@@ -70,7 +71,7 @@ public class Game {
                     survivor = getRandomNumber(1, 4);
 
                     // Depending on the survivor...
-                    switch(survivor) {
+                    switch (survivor) {
                         case 1: {
                             // Create civilian
                             survivors.add(new Civilian());
@@ -112,13 +113,50 @@ public class Game {
     // each survivor, until either all survivors or all
     // zombies are dead
     public static int battle() {
-        return 0;
+        int survivorsMadeIt = 0;
+        int survivorsKilled = 0;
+
+        for (Survivor survivor : survivors) {
+            // Check if the survivor is still alive
+            if (survivor.getHealth() > 0) {
+                boolean survivorKilled = false;
+
+                for (Zombie zombie : zombies) {
+                    // Check if the zombie is still alive
+                    if (zombie.isAlive()) {
+                        zombie.takeDamage(survivor.getAttack());
+
+                        // Check if the zombie is killed by the survivor
+                        if (!zombie.isAlive()) {
+                            survivor.incrementKills();
+                        }
+                    }
+
+                    // Check if the survivor has been killed by any zombie
+                    if (survivor.getHealth() <= 0) {
+                        survivorKilled = true;
+                        break;
+                    }
+                }
+
+                if (!survivorKilled) {
+                    survivorsMadeIt++;
+                } else {
+                    survivorsKilled++;
+                }
+            }
+        }
+
+        // Remove killed survivors from the list
+        survivors.removeIf(survivor -> survivor.getHealth() <= 0);
+        return survivorsMadeIt;
     }
 
     // This method will display final game statistics for the user
     private static void displayStats() {
         System.out.println("We have " + survivors.size() + " survivors trying to make it to safety.\n");
         System.out.println("But there are " + zombies.size() + " zombies waiting for them.\n");
-        System.out.println("It seems " + 0 + " have made it to safety.");
+        int survivorsMadeIt = battle();
+        System.out.println("It seems " + survivorsMadeIt + " have made it to safety.");
     }
 }
