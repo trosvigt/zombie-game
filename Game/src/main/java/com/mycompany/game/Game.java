@@ -1,4 +1,4 @@
-package Game.src.main.java.com.mycompany.game;
+package com.mycompany.game;
 
 import java.util.ArrayList;
 import java.util.Random;

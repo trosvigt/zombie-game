@@ -1,4 +1,4 @@
-package Game.src.main.java.com.mycompany.game;
+package com.mycompany.game;
 
 public abstract class Character {
     private int health;
