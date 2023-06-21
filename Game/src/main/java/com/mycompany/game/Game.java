@@ -4,14 +4,22 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Game {
-
     private static Random random = new Random();
     private static ArrayList<Survivor> survivors = new ArrayList();
     private static ArrayList<Zombie> zombies = new ArrayList();
 
     public static void main(String[] args) {
         // Generate random Character list
-       generateRandomCharacters();
+        //generateRandomCharacters();
+
+        survivors.add(new Soldier());
+        survivors.add(new Civilian());
+        survivors.add(new Scientist());
+        survivors.add(new Soldier());
+        survivors.add(new Soldier());
+
+        zombies.add(new Tank());
+        zombies.add(new CommonInfected());
 
         // Display statistics for the user
         displayStats();
