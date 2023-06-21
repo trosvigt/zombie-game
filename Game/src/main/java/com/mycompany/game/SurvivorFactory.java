@@ -3,6 +3,7 @@ package com.mycompany.game;
 public class SurvivorFactory {
   public Survivor returnInstance = null;
 
+  // This method will return a random instance of Survivor
   public Survivor getSurvivorInstance(int survivor) {
     // Depending on the survivor...
     switch (survivor) {

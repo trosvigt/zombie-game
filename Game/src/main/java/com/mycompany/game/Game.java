@@ -33,7 +33,6 @@ public class Game {
         for (int i = 0; i < characterCount; i++) {
             // Generate one or two to pick between Survivor and Zombie
             characterType = RandomUtility.getRandomNumber(1, 3);
-
             switch(characterType) {
                 // Survivor case...
                 case 1: {
@@ -42,6 +41,15 @@ public class Game {
 
                     // Generate and add survivor
                     survivor = survivorFactory.getSurvivorInstance(characterType);
+
+                    // ***************************************
+                    // Use weapon factory to get random weapon
+                    // ***************************************
+
+                    // **************************************
+                    // Use weapon setter to set random weapon
+                    // **************************************
+
                     survivors.add(survivor);
                 }
                 // Zombie case...
