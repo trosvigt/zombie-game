@@ -1,17 +1,14 @@
 package com.mycompany.game;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Game {
-
-    private static Random random = new Random();
     private static ArrayList<Survivor> survivors = new ArrayList();
     private static ArrayList<Zombie> zombies = new ArrayList();
 
     public static void main(String[] args) {
         // Generate random Character list
-       generateRandomCharacters();
+        generateRandomCharacters();
 
         // Display statistics for the user
         displayStats();
@@ -21,91 +18,51 @@ public class Game {
     // number of characters generated is random, along with the
     // number of zombies and survivors
     private static void generateRandomCharacters() {
-        // Declarations for random generation
+        // Get the factories going
+        ZombieFactory zombieFactory = new ZombieFactory();
+        SurvivorFactory survivorFactory = new SurvivorFactory();
         int characterType;
-        int zombie;
-        int survivor;
+        Zombie zombie;
+        Survivor survivor;
 
         // Get the total character count
         // Default min is 10 and default max is 30
-        int characterCount = getRandomNumber(10, 30);
+        int characterCount = RandomUtility.getRandomNumber(10, 30);
 
         // Generate number of characters equal to characterCount
         for (int i = 0; i < characterCount; i++) {
             // Generate one or two to pick between Survivor and Zombie
-            characterType = getRandomNumber(1, 3);
-
-            // Depending on the type...
-            switch (characterType) {
-                // Zombie case
+            characterType = RandomUtility.getRandomNumber(1, 3);
+            switch(characterType) {
+                // Survivor case...
                 case 1: {
-                    // Generate one or two to pick between common
-                    // infected and tank, respectively
-                    zombie = getRandomNumber(1, 3);
+                    // Generate random number for survivor type
+                    characterType = RandomUtility.getRandomNumber(1, 4);
 
-                    // Depending on zombie...
-                    switch (zombie) {
-                        // Common infected case
-                        case 1: {
-                            // Create common infected
-                            zombies.add(new CommonInfected());
-                            break;
-                        }
-                        // Tank case
-                        case 2: {
-                            // Create tank
-                            zombies.add(new Tank());
-                            break;
-                        }
-                        default: {
-                            System.out.println("Unable to create Zombie...");
-                            break;
-                        }
-                    }
-                    break;
+                    // Generate and add survivor
+                    survivor = survivorFactory.getSurvivorInstance(characterType);
+
+                    // ***************************************
+                    // Use weapon factory to get random weapon
+                    // ***************************************
+
+                    // **************************************
+                    // Use weapon setter to set random weapon
+                    // **************************************
+
+                    survivors.add(survivor);
                 }
-                // Survivor case
+                // Zombie case...
                 case 2: {
-                    // Generate one, two, or three to pick between civilian,
-                    // scientist, and soldier, respectively
-                    survivor = getRandomNumber(1, 4);
+                    // Generate random number for zombie type
+                    characterType = RandomUtility.getRandomNumber(1, 3);
 
-                    // Depending on the survivor...
-                    switch (survivor) {
-                        case 1: {
-                            // Create civilian
-                            survivors.add(new Civilian());
-                            break;
-                        }
-                        case 2: {
-                            // Create scientist
-                            survivors.add(new Scientist());
-                            break;
-                        }
-                        case 3: {
-                            // Create soldier
-                            survivors.add(new Soldier());
-                            break;
-                        }
-                        default: {
-                            System.out.println("Unable to create Survivor...");
-                            break;
-                        }
-                    }
-                    break;
-                }
-                default: {
-                    System.out.println("Unable to create Character...");
-                    break;
+                    // Generate and add zombie
+                    zombie = zombieFactory.getZombieInstance(characterType);
+                    zombies.add(zombie);
                 }
             }
         }
-    }
-
-    // This method will return a random int between
-    // low (inclusive) and high (exclusive)
-    private static int getRandomNumber(int low, int high) {
-        return random.nextInt(high - low) + low;
     }
 
     // This method will contain the main battle logic...
