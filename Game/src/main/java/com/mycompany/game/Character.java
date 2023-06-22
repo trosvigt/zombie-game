@@ -32,10 +32,6 @@ public abstract class Character {
         this.instance_id = id;
     }
 
-    protected void attack(Character target) {
-        target.setHealth(target.getHealth() - attack);
-    }
-
     // This method will check if the survivor is alive
     protected boolean isAlive(){
         return getHealth() > 0;

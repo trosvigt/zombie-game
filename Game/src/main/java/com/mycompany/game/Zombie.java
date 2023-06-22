@@ -8,7 +8,7 @@ public abstract class Zombie extends Character {
     }
 
     // The method allows you to count the number of zombies of a specific type
-    public static int countZombieType(List<Zombie> zombies, String type) {
+    protected static int countZombieType(List<Zombie> zombies, String type) {
         int count = 0;
 
         // Count the type
@@ -19,6 +19,10 @@ public abstract class Zombie extends Character {
         }
 
         return count;
+    }
+
+    protected void attack(Survivor target) {
+        target.setHealth(target.getHealth() - this.getAttack());
     }
 }
 
