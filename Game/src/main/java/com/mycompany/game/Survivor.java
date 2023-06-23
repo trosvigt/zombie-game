@@ -3,8 +3,19 @@ package com.mycompany.game;
 import java.util.List;
 
 public abstract class Survivor extends Character {
+
+    private Weapon weapon;
+
     public Survivor(int health, int attack) {
         super(health, attack);
+    }
+    
+    protected Weapon getWeapon() {
+        return weapon;
+    }
+
+    protected void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
     }
 
     // To count the number of survivor of a specific type
@@ -32,6 +43,7 @@ public abstract class Survivor extends Character {
 }
 
 class Scientist extends Survivor {
+
     private static int id = -1;
 
     public Scientist() {
@@ -54,6 +66,7 @@ class Scientist extends Survivor {
 }
 
 class Civilian extends Survivor {
+
     private static int id = -1;
 
     public Civilian() {
@@ -76,6 +89,7 @@ class Civilian extends Survivor {
 }
 
 class Soldier extends Survivor {
+
     private static int id = -1;
 
     public Soldier() {
