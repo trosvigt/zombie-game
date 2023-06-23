@@ -1,103 +1,112 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Game.src.main.java.com.mycompany.game;
+package com.mycompany.game;
 
-/**
- *
- * @author Ziqi
- */
-//Abstract classes allow we to define common behaviors
+import java.util.List;
+
 public abstract class Survivor extends Character {
 
-    public Survivor(int initialHealth, int attack) {
-        super(initialHealth, attack);
+    private Weapon weapon;
+
+    public Survivor(int health, int attack) {
+        super(health, attack);
+    }
+    
+    protected Weapon getWeapon() {
+        return weapon;
     }
 
-    //This method will be used to display information about the type of zombie
-    public abstract String getType();
+    protected void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
 
-    //To count the number of survivor of a specific type
-    public static void countSurvivorType(Survivor[] survivors, String type) {
+    // To count the number of survivor of a specific type
+    protected static int countSurvivorType(List<Survivor> survivors, String type) {
         int count = 0;
 
+        // Count the type
         for (Survivor survivor : survivors) {
             if (survivor.getType().equalsIgnoreCase(type)) {
                 count++;
             }
         }
 
-        System.out.println(type + " Count: " + count);
+        return count;
     }
-    public abstract int getHealth(); 
-    public abstract void setHealth(int initialHealth);
-    //This method will check if the survivor is alive
-    public boolean isAlive(){
-        return getHealth()>0;
+
+    protected void attack(Zombie target) {
+        // Random int that will determine hit or miss
+        // Example: generated 78 with accuracy of 70 is a miss,
+        // because generated > accuracy
+        int accuracyRoll = RandomUtility.getRandomNumber(10, 30);
+
+        target.setHealth(target.getHealth() - this.getAttack());
     }
-    //This method will deccrease their health when zommbies attack
-    public void takeDamage(int attack){
-        setHealth(getHealth()-attack);
-    
-    }
-    
 }
 
 class Scientist extends Survivor {
-    private int initialHealth;
+
+    private static int id = -1;
+
     public Scientist() {
         super(20, 2);
+
+        setId(incrementId());
+    }
+
+    // Gets next class id
+    private static int incrementId() {
+        id++;
+
+        return id;
     }
 
     @Override
     public String getType() {
         return "Scientist";
     }
-    @Override
-    public int getHealth(){
-        return initialHealth;
-    }
-    @Override 
-    public void setHealth(int initialHealth){
-        this.initialHealth=initialHealth;
-    }
 }
 
 class Civilian extends Survivor {
-    private int initialHealth;
+
+    private static int id = -1;
+
     public Civilian() {
         super(50, 5);
+
+        setId(incrementId());
+    }
+
+    // Gets next class id
+    private static int incrementId() {
+        id++;
+
+        return id;
     }
 
     @Override
     public String getType() {
         return "Civilian";
     }
-    public int getHealth(){
-        return initialHealth;
-    }
-    @Override 
-    public void setHealth(int initialHealth){
-        this.initialHealth=initialHealth;
-    }
 }
 
 class Soldier extends Survivor {
-    private int initialHealth;
+
+    private static int id = -1;
+
     public Soldier() {
         super(100, 10);
+
+        setId(incrementId());
+    }
+
+    // Gets next class id
+    private static int incrementId() {
+        id++;
+
+        return id;
     }
 
     @Override
     public String getType() {
         return "Soldier";
-    }
-    public int getHealth(){
-        return initialHealth;
-    }
-    @Override 
-    public void setHealth(int initialHealth){
-        this.initialHealth=initialHealth;
     }
 }
