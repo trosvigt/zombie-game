@@ -4,7 +4,7 @@ public class WeaponFactory {
   public Weapon returnInstance = null;
 
   // This method will return a random instance of weapon
-  public Weapon getSurvivorInstance(int weapon) {
+  public Weapon getWeaponInstance(int weapon) {
     // Depending on the weapon...
     switch (weapon) {
         case 1: {

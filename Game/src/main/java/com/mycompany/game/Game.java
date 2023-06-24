@@ -21,6 +21,7 @@ public class Game {
         // Get the factories going
         ZombieFactory zombieFactory = new ZombieFactory();
         SurvivorFactory survivorFactory = new SurvivorFactory();
+        WeaponFactory weaponFactory = new WeaponFactory();
         int characterType;
         Zombie zombie;
         Survivor survivor;
@@ -42,13 +43,11 @@ public class Game {
                     // Generate and add survivor
                     survivor = survivorFactory.getSurvivorInstance(characterType);
 
-                    // ***************************************
-                    // Use weapon factory to get random weapon
-                    // ***************************************
+                    // Use weapon factory to get a random weapon
+                    Weapon weapon = weaponFactory.getWeaponInstance(RandomUtility.getRandomNumber(1, 8));
 
-                    // **************************************
-                    // Use weapon setter to set random weapon
-                    // **************************************
+                    // Set the survivor's new weapon
+                    survivor.setWeapon(weapon);
 
                     survivors.add(survivor);
                 }
@@ -69,7 +68,7 @@ public class Game {
     // Each survivor attacks each zombie, then each zombie attacks
     // each survivor, until either all survivors or all
     // zombies are dead
-    private static int battle() {
+    private static int battle() {            
         ArrayList<Zombie> deadZombies = new ArrayList();
         ArrayList<Survivor> deadSurvivors = new ArrayList();
 
@@ -89,7 +88,7 @@ public class Game {
                     if (!zombie.isAlive() && !deadZombies.contains(zombie)) {
                         deadZombies.add(zombie);
 
-                        System.out.println(survivor + " killed " + zombie);
+                        System.out.println(survivor + " killed " + zombie + " with a(n) " + survivor.getWeapon().getType());
                     }
                 }
             }
@@ -128,7 +127,7 @@ public class Game {
             System.out.println("It seems " + survivorCount + " have made it to safety.");
         } else {
             System.out.println("None of the survivors made it");
-        }
+        }        
     }
 
     private static void displaySurvivorMessage() {
@@ -150,5 +149,5 @@ public class Game {
         Zombie.countZombieType(zombies, "CommonInfected"),
         Zombie.countZombieType(zombies, "Tank"));
         System.out.println(message);
-    }
+    }   
 }
