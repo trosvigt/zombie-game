@@ -45,10 +45,13 @@ public class Game {
                     // ***************************************
                     // Use weapon factory to get random weapon
                     // ***************************************
+                    WeaponFactory weaponFactory = new WeaponFactory();
+                    Weapon weapon = weaponFactory.getWeaponInstance(RandomUtility.getRandomNumber(1, 7));
 
                     // **************************************
                     // Use weapon setter to set random weapon
                     // **************************************
+                    survivor.setWeapon(weapon);
 
                     survivors.add(survivor);
                 }
@@ -69,7 +72,7 @@ public class Game {
     // Each survivor attacks each zombie, then each zombie attacks
     // each survivor, until either all survivors or all
     // zombies are dead
-    private static int battle() {
+    private static int battle() {            
         ArrayList<Zombie> deadZombies = new ArrayList();
         ArrayList<Survivor> deadSurvivors = new ArrayList();
 
@@ -128,7 +131,7 @@ public class Game {
             System.out.println("It seems " + survivorCount + " have made it to safety.");
         } else {
             System.out.println("None of the survivors made it");
-        }
+        }        
     }
 
     private static void displaySurvivorMessage() {
@@ -150,5 +153,5 @@ public class Game {
         Zombie.countZombieType(zombies, "CommonInfected"),
         Zombie.countZombieType(zombies, "Tank"));
         System.out.println(message);
-    }
+    }   
 }
