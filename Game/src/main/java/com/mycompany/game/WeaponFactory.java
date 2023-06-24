@@ -8,37 +8,37 @@ public class WeaponFactory {
     // Depending on the weapon...
     switch (weapon) {
         case 1: {
-            // Create civilian
+            // Create Pistol
             returnInstance = new Pistol();
             break;
         }
         case 2: {
-            // Create scientist
+            // Create Shotgun
             returnInstance = new Shotgun();
             break;
         }
         case 3: {
-            // Create soldier
+            // Create Submachine Gun
             returnInstance = new SubmachineGun();
             break;
         }
         case 4: {
-            // Create soldier
+            // Create Assult Rifle
             returnInstance = new AssaultRifle ();
             break;
         }
         case 5: {
-            // Create civilian
+            // Create Axe
             returnInstance = new Axe();
             break;
         }
         case 6: {
-            // Create scientist
+            // Create Crowbar
             returnInstance = new Crowbar();
             break;
         }
         case 7: {
-            // Create soldier
+            // Create Frying Pan
             returnInstance = new FryingPan();
             break;
         }
