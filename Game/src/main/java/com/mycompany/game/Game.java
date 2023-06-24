@@ -21,6 +21,7 @@ public class Game {
         // Get the factories going
         ZombieFactory zombieFactory = new ZombieFactory();
         SurvivorFactory survivorFactory = new SurvivorFactory();
+        WeaponFactory weaponFactory = new WeaponFactory();
         int characterType;
         Zombie zombie;
         Survivor survivor;
@@ -42,15 +43,10 @@ public class Game {
                     // Generate and add survivor
                     survivor = survivorFactory.getSurvivorInstance(characterType);
 
-                    // ***************************************
-                    // Use weapon factory to get random weapon
-                    // ***************************************
-                    WeaponFactory weaponFactory = new WeaponFactory();
-                    Weapon weapon = weaponFactory.getWeaponInstance(RandomUtility.getRandomNumber(1, 7));
+                    // Use weapon factory to get a random weapon
+                    Weapon weapon = weaponFactory.getWeaponInstance(RandomUtility.getRandomNumber(1, 8));
 
-                    // **************************************
-                    // Use weapon setter to set random weapon
-                    // **************************************
+                    // Set the survivor's new weapon
                     survivor.setWeapon(weapon);
 
                     survivors.add(survivor);
@@ -92,7 +88,7 @@ public class Game {
                     if (!zombie.isAlive() && !deadZombies.contains(zombie)) {
                         deadZombies.add(zombie);
 
-                        System.out.println(survivor + " killed " + zombie);
+                        System.out.println(survivor + " killed " + zombie + " with a(n) " + survivor.getWeapon().getType());
                     }
                 }
             }

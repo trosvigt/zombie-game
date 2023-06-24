@@ -47,17 +47,12 @@ public abstract class Survivor extends Character {
         // because generated > accuracy                 
         int accuracyRoll = RandomUtility.getRandomNumber(1, 101);
         
+        // See if the attack hits
         if (accuracyRoll <= weapon.getAccuracy()) {
-            // Attack hits, reduce the target's health by the survivor's attack damage
-            target.setHealth(target.getHealth() - this.getAttack());
-
-            // Display the weapon used to kill the zombie
-            System.out.println("Survivor used " + weapon.getType() + " to kill the zombie.");
-        } else {
-            // Attack misses
-            System.out.println("Survivor missed the attack.");
+            // Attack hits, reduce the target's health by the survivor's weapon damage
+            target.setHealth(target.getHealth() - this.getWeapon().getDamage());
         }    
-}
+    }
 }
 
 class Scientist extends Survivor {
