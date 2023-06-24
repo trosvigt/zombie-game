@@ -50,6 +50,8 @@ public class Game {
                     survivor.setWeapon(weapon);
 
                     survivors.add(survivor);
+
+                    break;
                 }
                 // Zombie case...
                 case 2: {
@@ -59,6 +61,8 @@ public class Game {
                     // Generate and add zombie
                     zombie = zombieFactory.getZombieInstance(characterType);
                     zombies.add(zombie);
+
+                    break;
                 }
             }
         }
