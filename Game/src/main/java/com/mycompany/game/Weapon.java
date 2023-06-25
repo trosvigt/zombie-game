@@ -16,14 +16,6 @@ public abstract class Weapon {
     protected int getAccuracy() {
         return accuracy;
     }
-
-    protected void setDamage(int damage) {
-        this.damage = damage;
-    }
-
-    protected void setAccuracy(int accuracy) {
-        this.accuracy = accuracy;
-    }
     
     public abstract String getType();
 }

@@ -3,7 +3,7 @@ package com.mycompany.game;
 public class WeaponFactory {
   public Weapon returnInstance = null;
 
-  // This method will return a random instance of weapon
+  // This method will return a random instance of Weapon
   public Weapon getWeaponInstance(int weapon) {
     // Depending on the weapon...
     switch (weapon) {
